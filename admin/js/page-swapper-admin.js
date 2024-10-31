@@ -1,0 +1,62 @@
+(function ($) {
+  'use strict';
+
+  /**
+   * All of the code for your admin-specific JavaScript source
+   * should reside in this file.
+   *
+   * Note that this assume you're going to use jQuery, so it prepares
+   * the $ function reference to be used within the scope of this
+   * function.
+   *
+   * From here, you're able to define handlers for when the DOM is
+   * ready:
+   *
+   * $(function() {
+	 *
+	 * });
+   *
+   * Or when the window is loaded:
+   *
+   * $( window ).load(function() {
+	 *
+	 * });
+   *
+   * ...and so on.
+   *
+   * Remember that ideally, we should not attach any more than a single DOM-ready or window-load handler
+   * for any particular page. Though other scripts in WordPress core, other plugins, and other themes may
+   * be doing this, we should try to minimize doing that in our own work.
+   */
+
+  /**
+   * DOM-Ready
+   */
+  $(function () {
+    /**
+     * Set owl-config via presets
+     */
+    $(document).on('change', '#owl-slider-presets', function (e) {
+      //var owlConfigElement = $('#owlConfig-' + $('#owl-slider-presets').data('lang'));
+      var selectBox = $('#owl-slider-presets'),
+        owlConfigElement = selectBox.closest('.customize-control').find('textarea');
+
+      switch (selectBox.val()) {
+        case 'fade':
+          owlConfigElement.val("animateOut: 'fadeOut',\nanimateIn: 'fadeIn',");
+          break;
+        case 'slidevertical':
+          owlConfigElement.val("animateOut: 'slideOutDown',\nanimateIn: 'slideInDown',");
+          break;
+        case 'zoominout':
+          owlConfigElement.val("animateOut: 'zoomOut',\nanimateIn: 'zoomIn',");
+          break;
+        case '':
+          owlConfigElement.val('');
+          break;
+
+      }
+    });
+  });
+
+})(jQuery);
